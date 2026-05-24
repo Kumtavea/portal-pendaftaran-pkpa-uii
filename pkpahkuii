@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pendaftaran PKPA HK UII - Pendidikan Profesi Advokat Modern</title>
+    <meta name="description" content="Pendidikan Khusus Profesi Advokat (PKPA) Hukum Keluarga UII. Persiapkan karier advokat profesional Anda bersama pengajar praktisi berpengalaman dan kurikulum modern.">
+    
+    <!-- Google Fonts: Poppins (Headings) & Montserrat (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS Setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#051033', // Deepest background
+                            800: '#0a2471', // Primary Brand Color
+                            700: '#143aa3', // Lighter primary
+                        },
+                        gold: {
+                            500: '#ffb909', // Accent Color
+                            400: '#ffd04d', // Hover accent
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                        'gold-glow': '0 0 15px rgba(255, 185, 9, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Variables & Base Resets */
+        :root {
+            --bg-color: #051033;
+            --primary-color: #0a2471;
+            --accent-color: #ffb909;
+            --text-light: #ffffff;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(10, 36, 113, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 185, 9, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(10, 36, 113, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 185, 9, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(5, 16, 51, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 185, 9, 0.1);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #ffb909 0%, #ffe38f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 6s ease-in-out 3s infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-content {
+            display: flex;
+            width: 200%;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+        /* Timeline Styles */
+        .timeline-container { position: relative; }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 16px; height: 100%; width: 2px;
+            background: rgba(255, 185, 9, 0.3);
+        }
+        .timeline-item { position: relative; padding-left: 48px; margin-bottom: 2rem; }
+        .timeline-dot {
+            position: absolute; left: 9px; top: 6px;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--bg-color); border: 2px solid var(--accent-color);
+            box-shadow: 0 0 10px rgba(255, 185, 9, 0.5);
+            z-index: 10;
+        }
+
+        /* Hide elements for JS functionality */
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-navy-900">
+
+    <!-- A. NAVBAR -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 z-50">
+                    <!-- Placeholder Icons for Logos -->
+                    <div class="w-10 h-10 rounded-full bg-gold-500 text-navy-900 flex items-center justify-center font-bold text-xl shadow-gold-glow">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-xl leading-tight tracking-wide">PKPA HK UII</span>
+                        <span class="text-[10px] text-gray-300 tracking-widest uppercase">Pendidikan Profesi Advokat</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#tentang" class="text-sm font-medium hover:text-gold-500 transition-colors">Tentang</a>
+                    <a href="#kurikulum" class="text-sm font-medium hover:text-gold-500 transition-colors">Kurikulum</a>
+                    <a href="#keunggulan" class="text-sm font-medium hover:text-gold-500 transition-colors">Keunggulan</a>
+                    <a href="#testimoni" class="text-sm font-medium hover:text-gold-500 transition-colors">Testimoni</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-gold-500 transition-colors">FAQ</a>
+                </nav>
+
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-4 z-50">
+                    <a href="#pendaftaran" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-transparent border border-gold-500 text-gold-500 font-medium text-sm hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 shadow-[0_0_15px_rgba(255,185,9,0.2)] hover:shadow-[0_0_20px_rgba(255,185,9,0.6)]">
+                        Daftar Sekarang
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-navy-900/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
+            <a href="#tentang" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Tentang PKPA</a>
+            <a href="#kurikulum" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Kurikulum</a>
+            <a href="#keunggulan" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Keunggulan</a>
+            <a href="#testimoni" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Testimoni</a>
+            <a href="#pendaftaran" class="mobile-link px-8 py-3 rounded-full bg-gold-500 text-navy-900 font-bold mt-4">Daftar Sekarang</a>
+        </div>
+    </header>
+
+    <!-- B. PREMIUM HERO SECTION -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 right-0 w-96 h-96 bg-primary-color rounded-full mix-blend-multiply filter blur-[128px] opacity-50"></div>
+        <div class="absolute bottom-0 left-10 w-72 h-72 bg-gold-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Kiri: Konten -->
+                <div class="flex flex-col gap-6 max-w-2xl reveal">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel-light w-max border-white/10">
+                        <span class="text-gold-500"><i class="fa-solid fa-sparkles"></i></span>
+                        <span class="text-xs font-medium tracking-wide">Pendidikan Profesi Advokat Modern</span>
+                    </div>
+                    
+                    <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.2]">
+                        Mulai Karier <br>
+                        <span class="text-gradient-gold">Advokat Profesional</span><br>
+                        Bersama PKPA HK UII
+                    </h1>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed border-l-4 border-gold-500 pl-4 my-2">
+                        "Menegakkan keadilan bukan sekadar profesi, melainkan panggilan jiwa."
+                    </p>
+                    
+                    <p class="text-gray-400 leading-relaxed">
+                        Program Pendidikan Khusus Profesi Advokat yang dirancang komprehensif untuk membentuk calon advokat yang berintegritas, andal, dan siap menghadapi dinamika dunia praktik hukum masa kini.
+                    </p>
+                    
+                    <div class="flex flex-wrap items-center gap-4 mt-4">
+                        <a href="#pendaftaran" class="px-8 py-4 rounded-xl bg-gold-500 text-navy-900 font-bold hover:bg-gold-400 transition-colors shadow-gold-glow flex items-center gap-2">
+                            Daftar Angkatan VII <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://wa.me/6287731921086" target="_blank" class="px-8 py-4 rounded-xl glass-panel text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-green-400 text-xl"></i> Konsultasi Admin
+                        </a>
+                    </div>
+                    
+                    <!-- Mini Features -->
+                    <div class="flex flex-wrap gap-x-6 gap-y-3 mt-6 pt-6 border-t border-white/10 text-sm text-gray-300">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-certificate text-gold-500"></i> Sertifikat Resmi DPN PERADI</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-user-tie text-gold-500"></i> Pengajar Praktisi Ahli</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-laptop-file text-gold-500"></i> Full Online Learning</div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Visual & Floating Cards -->
+                <div class="relative h-[500px] lg:h-[600px] hidden md:block reveal">
+                    <!-- Placeholder for Main Image (using CSS shapes & styling for a premium abstract look since real images aren't available) -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-navy-800 to-navy-700 rounded-3xl transform rotate-3 scale-95 border border-white/5 shadow-2xl overflow-hidden flex items-center justify-center">
+                         <i class="fa-solid fa-gavel text-[200px] text-white/5"></i>
+                         <!-- Decorative Inner Elements -->
+                         <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl"></div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1200&auto=format&fit=crop" alt="Legal Professional" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-2xl mix-blend-overlay opacity-80" onerror="this.style.display='none'">
+
+                    <!-- Floating Card 1 -->
+                    <div class="absolute top-10 -left-10 glass-panel p-4 rounded-2xl animate-float flex items-center gap-4 w-64">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-500 text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold text-sm">Angkatan VII</h4>
+                            <p class="text-xs text-gray-400">Pendaftaran Dibuka</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 2 -->
+                    <div class="absolute bottom-20 -right-8 glass-panel p-4 rounded-2xl animate-float-delayed flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold text-sm">Sertifikat Resmi</h4>
+                            <p class="text-xs text-gray-400">DPN PERADI</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 3 -->
+                    <div class="absolute top-1/2 -translate-y-1/2 -right-4 glass-panel p-3 rounded-xl animate-float backdrop-blur-md border-gold-500/30 shadow-gold-glow">
+                        <div class="text-xs font-bold text-gold-500 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Kelas Online Aktif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- C. TRUSTED PARTNERS -->
+    <section class="py-8 bg-navy-900 border-y border-white/5 overflow-hidden">
+        <div class="container mx-auto px-6 mb-4 text-center">
+            <p class="text-xs font-medium tracking-widest text-gray-500 uppercase">Dipercaya & Didukung Oleh</p>
+        </div>
+        <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-[marquee_20s_linear_infinite]">
+                <!-- Duplicated list for infinite effect -->
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> Universitas Islam Indonesia</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-scale-balanced"></i> DPN PERADI</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-gavel"></i> Pengadilan Negeri</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> Firma Hukum Nasional</li>
+                <!-- Duplicates -->
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> Universitas Islam Indonesia</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-scale-balanced"></i> DPN PERADI</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-gavel"></i> Pengadilan Negeri</li>
+                <li class="text-2xl font-heading font-bold text-white/30 flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> Firma Hukum Nasional</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- D. ABOUT PKPA -->
+    <section id="tentang" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Kiri: Image with Gold Overlay -->
+                <div class="relative rounded-3xl overflow-hidden group reveal">
+                    <div class="absolute inset-0 bg-navy-800/80 mix-blend-multiply z-10 transition-all duration-500 group-hover:bg-navy-800/60"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1200&auto=format&fit=crop" alt="Ruang Sidang" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/0a2471/ffffff?text=Ruang+Seminar+Hukum'">
+                    
+                    <!-- Badge overlay -->
+                    <div class="absolute bottom-8 left-8 z-20 glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500">
+                        <h3 class="font-heading text-2xl font-bold text-white">Integritas &</h3>
+                        <h3 class="font-heading text-2xl font-bold text-gold-500">Profesionalisme</h3>
+                    </div>
+                </div>
+
+                <!-- Kanan: Konten -->
+                <div class="reveal">
+                    <h4 class="text-gold-500 font-medium tracking-wider text-sm uppercase mb-2">Mengenal Program</h4>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Apa Itu PKPA HK UII?</h2>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-justify">
+                        Pendidikan Khusus Profesi Advokat (PKPA) yang diselenggarakan oleh Hukum Keluarga UII bekerjasama dengan DPN PERADI adalah program eksklusif yang dirancang untuk menjembatani lulusan sarjana hukum menuju dunia praktik hukum profesional. Kami fokus pada penguasaan materi litigasi, non-litigasi, dan etika profesi.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-gold-500 text-xs"></i></div>
+                            <span class="text-gray-200">Kurikulum praktis berbasis studi kasus terkini.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-gold-500 text-xs"></i></div>
+                            <span class="text-gray-200">Dibimbing langsung oleh Advokat Senior dan Akademisi berpengalaman.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-gold-500 text-xs"></i></div>
+                            <span class="text-gray-200">Persiapan intensif dan terarah menghadapi Ujian Profesi Advokat (UPA).</span>
+                        </li>
+                    </ul>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <div class="text-3xl font-heading font-bold text-gold-500 mb-1">100+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Alumni Sukses</div>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <div class="text-3xl font-heading font-bold text-gold-500 mb-1">20+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Pengajar Praktisi</div>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <div class="text-3xl font-heading font-bold text-gold-500 mb-1">5+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Batch Terselenggara</div>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <div class="text-3xl font-heading font-bold text-gold-500 mb-1"><i class="fa-solid fa-globe"></i></div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Skala Nasional</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E. PROGRAM BENEFITS -->
+    <section id="keunggulan" class="py-24 bg-navy-800/30 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h4 class="text-gold-500 font-medium tracking-wider text-sm uppercase mb-2">Nilai Tambah</h4>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih PKPA HK UII?</h2>
+                <p class="text-gray-400">Fasilitas dan keunggulan komprehensif yang kami berikan untuk menunjang keberhasilan Anda menjadi advokat andal.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Pemateri Profesional</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Materi disampaikan langsung oleh praktisi hukum, hakim, dan advokat senior yang kaya akan pengalaman lapangan.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Sertifikat Resmi PERADI</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Lulusan mendapatkan sertifikat resmi dari DPN PERADI sebagai syarat mutlak mengikuti Ujian Profesi Advokat.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Pembelajaran Online</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Sistem kelas virtual interaktif (Zoom) yang memungkinkan Anda belajar dari mana saja tanpa batasan ruang.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Softfile & Rekaman</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Akses tak terbatas ke seluruh materi presentasi, modul bacaan, dan video rekaman ulang kelas.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-spell-check"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Gratis Tryout UPA</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Fasilitas simulasi dan pembahasan bank soal UPA untuk mengukur kesiapan mental dan akademik peserta.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-yellow-600 flex items-center justify-center text-navy-900 text-2xl mb-6 shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-white">Merchandise Eksklusif</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dapatkan paket souvenir eksklusif dari panitia sebagai kenang-kenangan dan atribut pembelajaran.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- F. CURRICULUM & PROFIL PEMATERI -->
+    <section id="kurikulum" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Materi Pembelajaran</h2>
+                <p class="text-gray-400">Kurikulum komprehensif yang diamanatkan oleh PERADI, ditambah materi pengayaan spesifik dari UII.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-navy-900/50 p-8 rounded-3xl border border-white/5 shadow-2xl reveal">
+                <div class="timeline-container">
+                    
+                    <!-- Kategori 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="font-heading text-xl font-bold text-gold-500 mb-3">1. Materi Dasar</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base marker:text-gold-500/50">
+                            <li>Fungsi dan Peran Organisasi Advokat</li>
+                            <li>Sistem Peradilan Indonesia</li>
+                            <li>Kode Etik Advokat</li>
+                        </ul>
+                    </div>
+
+                    <!-- Kategori 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="font-heading text-xl font-bold text-gold-500 mb-3">2. Materi Hukum Acara (Litigasi)</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base grid md:grid-cols-2 gap-x-4 marker:text-gold-500/50">
+                            <li>Hukum Acara Perdata</li>
+                            <li>Hukum Acara Pidana</li>
+                            <li>Hukum Acara Peradilan TUN</li>
+                            <li>Hukum Acara Peradilan Agama</li>
+                            <li>Hukum Acara Mahkamah Konstitusi</li>
+                            <li>Hukum Acara Hubungan Industrial</li>
+                            <li>Hukum Acara Peradilan HAM</li>
+                            <li>Hukum Acara Peradilan Niaga</li>
+                            <li>Hukum Acara Pajak</li>
+                            <li>Mekanisme Alur Persidangan</li>
+                        </ul>
+                    </div>
+
+                    <!-- Kategori 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="font-heading text-xl font-bold text-gold-500 mb-3">3. Materi Non Litigasi</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base grid md:grid-cols-2 gap-x-4 marker:text-gold-500/50">
+                            <li>Perancangan dan Analisis Kontrak</li>
+                            <li>Teknik Membuat Legal Opinion</li>
+                            <li>Hukum Perusahaan</li>
+                            <li>Legal Due Diligence, Merger & Akuisisi</li>
+                            <li>Mediasi dan Alternatif Penyelesaian Sengketa</li>
+                            <li>Arbitrase</li>
+                            <li>Pengurusan Sengketa Pertanahan</li>
+                            <li>Penyelesaian Sengketa Syariah & Waris Islam</li>
+                        </ul>
+                    </div>
+
+                    <!-- Kategori 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="font-heading text-xl font-bold text-gold-500 mb-3">4. Materi Pendukung & Tambahan</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm md:text-base marker:text-gold-500/50">
+                            <li>Teknik Wawancara dengan Klien & Argumentasi Hukum</li>
+                            <li>Penelusuran Dokumen dan Bahan Hukum</li>
+                            <li>Manajemen Kantor Advokat</li>
+                            <li><span class="text-gold-400 text-xs px-2 py-0.5 border border-gold-400 rounded-full ml-1">Kekhasan UII</span> Relasi Hukum dan Kekuasaan, Hukum Internasional</li>
+                            <li><span class="text-gold-400 text-xs px-2 py-0.5 border border-gold-400 rounded-full ml-1">Kekhasan UII</span> Hukum Pidana KUHP Baru, Politik Hukum Islam</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Pemateri Grid Minimalis -->
+            <div class="mt-16 max-w-5xl mx-auto reveal">
+                <h3 class="text-center font-heading text-2xl font-bold mb-8">Tim Pengajar & Pakar</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="w-16 h-16 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-tie text-white/50"></i></div>
+                        <h4 class="font-bold text-sm">Ketua DPN PERADI</h4>
+                        <p class="text-xs text-gold-500">Keynote Speaker</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="w-16 h-16 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-2xl"><i class="fa-solid fa-gavel text-white/50"></i></div>
+                        <h4 class="font-bold text-sm">Hakim Agung RI</h4>
+                        <p class="text-xs text-gold-500">Pemateri Litigasi</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="w-16 h-16 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-2xl"><i class="fa-solid fa-briefcase text-white/50"></i></div>
+                        <h4 class="font-bold text-sm">Advokat Senior</h4>
+                        <p class="text-xs text-gold-500">Praktisi Hukum</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="w-16 h-16 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-2xl"><i class="fa-solid fa-book text-white/50"></i></div>
+                        <h4 class="font-bold text-sm">Guru Besar UII</h4>
+                        <p class="text-xs text-gold-500">Pakar Akademik</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- G. TATA CARA PENDAFTARAN & COUNTDOWN -->
+    <section id="pendaftaran" class="py-20 relative overflow-hidden">
+        <!-- Radial Glow BG -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[500px] bg-gold-500 rounded-full mix-blend-multiply filter blur-[150px] opacity-20 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="glass-panel border border-gold-500/30 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto shadow-[0_0_50px_rgba(255,185,9,0.15)] reveal">
+                <span class="bg-red-500/20 text-red-400 border border-red-500/50 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6 inline-block animate-pulse">
+                    Pendaftaran Segera Ditutup
+                </span>
+                
+                <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Pendaftaran Angkatan VII</h2>
+                <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Amankan kursi Anda sekarang. Kuota kelas interaktif dibatasi untuk menjaga efektivitas dan kualitas pembelajaran.</p>
+                
+                <!-- Countdown Timer -->
+                <div class="flex justify-center gap-4 md:gap-6 mb-10">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 glass-panel-light rounded-xl flex items-center justify-center font-heading text-2xl md:text-4xl font-bold text-gold-500" id="days">00</div>
+                        <span class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Hari</span>
+                    </div>
+                    <div class="text-2xl md:text-4xl font-bold text-gray-500 mt-4">:</div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 glass-panel-light rounded-xl flex items-center justify-center font-heading text-2xl md:text-4xl font-bold text-gold-500" id="hours">00</div>
+                        <span class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Jam</span>
+                    </div>
+                    <div class="text-2xl md:text-4xl font-bold text-gray-500 mt-4">:</div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 glass-panel-light rounded-xl flex items-center justify-center font-heading text-2xl md:text-4xl font-bold text-gold-500" id="minutes">00</div>
+                        <span class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Menit</span>
+                    </div>
+                    <div class="text-2xl md:text-4xl font-bold text-gray-500 mt-4">:</div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 glass-panel-light rounded-xl flex items-center justify-center font-heading text-2xl md:text-4xl font-bold text-gold-500" id="seconds">00</div>
+                        <span class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Detik</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <button class="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-navy-900 font-bold text-lg hover:shadow-gold-glow transform hover:-translate-y-1 transition-all">
+                        Amankan Kursi Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                    <a href="#" class="w-full md:w-auto px-8 py-4 rounded-xl glass-panel-light font-medium text-white hover:bg-white/10 transition-colors">
+                        Unduh Brosur PDF
+                    </a>
+                </div>
+                
+                <p class="mt-6 text-sm text-gray-400"><i class="fa-solid fa-circle-info text-gold-500 mr-1"></i> Syarat pendaftaran: Fotokopi Ijazah SH/S.H.I, KTP, dan Pas Foto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- H. TESTIMONIALS -->
+    <section id="testimoni" class="py-24 bg-navy-800/20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Cerita Alumni PKPA</h2>
+                <p class="text-gray-400">Bukti nyata komitmen kami dalam melahirkan advokat berkualitas.</p>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="relative max-w-5xl mx-auto reveal">
+                <div class="overflow-hidden rounded-2xl" id="testimonial-viewport">
+                    <div class="flex transition-transform duration-500 ease-in-out" id="testimonial-track">
+                        
+                        <!-- Testi 1 -->
+                        <div class="min-w-full p-6 md:p-8">
+                            <div class="glass-panel p-8 rounded-2xl relative">
+                                <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-white/10"></i>
+                                <div class="flex text-gold-500 text-sm mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-200 text-lg md:text-xl italic mb-6 leading-relaxed">"Materi yang disampaikan sangat relevan dengan praktik di lapangan. Tryout yang diberikan sangat membantu saya lulus Ujian Profesi Advokat (UPA) pada percobaan pertama dengan nilai memuaskan."</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center text-xl font-bold">A</div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Ahmad Fauzi, S.H.</h4>
+                                        <p class="text-sm text-gold-500">Alumni Batch III - Advokat Muda</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testi 2 -->
+                        <div class="min-w-full p-6 md:p-8">
+                            <div class="glass-panel p-8 rounded-2xl relative">
+                                <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-white/10"></i>
+                                <div class="flex text-gold-500 text-sm mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-200 text-lg md:text-xl italic mb-6 leading-relaxed">"Fasilitas online class-nya sangat stabil dan interaktif. Meski tidak bertatap muka langsung, diskusi berjalan dinamis. Pematerinya luar biasa, kombinasi akademisi dan praktisi handal."</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center text-xl font-bold">S</div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Siti Nurhaliza, S.H., M.H.</h4>
+                                        <p class="text-sm text-gold-500">Alumni Batch V - Corporate Lawyer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="flex justify-center gap-4 mt-6">
+                    <button id="prev-testi" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-gold-500 hover:text-navy-900 transition-colors"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="next-testi" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-gold-500 hover:text-navy-900 transition-colors"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I. DOKUMENTASI (GALLERY) -->
+    <section class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="font-heading text-3xl font-bold mb-10 text-center reveal">Dokumentasi Kegiatan</h2>
+            <!-- CSS Grid for simple masonry-like look -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px] reveal">
+                <!-- Gunakan placeholder warna solid karena URL gambar riil tidak tersedia -->
+                <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
+                    <div class="w-full h-full bg-gray-800 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
+                        <span>[Foto Kelas Zoom Interaktif]</span>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
+                    <div class="w-full h-full bg-gray-700 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
+                        <span>[Foto Materi Litigasi]</span>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden group relative">
+                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
+                    <div class="w-full h-full bg-gray-700 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
+                        <span>[Foto Penyerahan Sertifikat]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- J. FAQ SECTION -->
+    <section id="faq" class="py-24 bg-navy-800/30">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="font-heading text-3xl font-bold mb-10 text-center reveal">Pertanyaan Umum</h2>
+            
+            <div class="space-y-4 reveal">
+                <!-- FAQ Item 1 -->
+                <div class="glass-panel border border-white/10 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none">
+                        <span class="font-medium text-white">Apakah sarjana selain Ilmu Hukum bisa mendaftar?</span>
+                        <i class="fa-solid fa-plus text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-0 text-gray-400 text-sm">
+                        <div class="pb-4 border-t border-white/5 mt-2 pt-4">
+                            Sesuai dengan UU Advokat No. 18 Tahun 2003, syarat utama mengikuti PKPA adalah berlatar belakang pendidikan tinggi hukum (Sarjana Hukum/S.H., Sarjana Hukum Islam/S.H.I., Sarjana Hukum Militer/S.H.M., atau Perguruan Tinggi Ilmu Kepolisian/PTIK).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-panel border border-white/10 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none">
+                        <span class="font-medium text-white">Bagaimana teknis pelaksanaan kelas online?</span>
+                        <i class="fa-solid fa-plus text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-0 text-gray-400 text-sm">
+                        <div class="pb-4 border-t border-white/5 mt-2 pt-4">
+                            Kelas dilaksanakan secara live virtual melalui platform Zoom Meeting. Peserta diwajibkan menyalakan kamera (on camera) selama sesi berlangsung untuk memastikan kehadiran dan interaksi dengan pemateri, sesuai standar absensi kelulusan DPN PERADI.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-panel border border-white/10 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none">
+                        <span class="font-medium text-white">Kapan sertifikat PKPA diterbitkan?</span>
+                        <i class="fa-solid fa-plus text-gold-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-0 text-gray-400 text-sm">
+                        <div class="pb-4 border-t border-white/5 mt-2 pt-4">
+                            Sertifikat akan diproses ke DPN PERADI Pusat di Jakarta setelah seluruh rangkaian pendidikan selesai dan peserta memenuhi syarat absensi minimal 80%. Proses pencetakan dan pengiriman dari DPN biasanya memakan waktu 2-4 minggu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- K. FINAL CTA & FOOTER -->
+    <section class="py-20 relative overflow-hidden bg-gradient-to-b from-transparent to-navy-900 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="font-heading text-4xl font-bold mb-6">Siap Menjadi Advokat Profesional?</h2>
+            <p class="text-gray-400 mb-8 max-w-xl mx-auto">Langkah pertama menuju karier hukum yang gemilang dimulai dari sini. Kuota terbatas, daftarkan diri Anda sekarang.</p>
+            <button class="px-10 py-4 rounded-xl bg-gold-500 text-navy-900 font-bold text-lg hover:bg-white hover:text-navy-900 shadow-gold-glow transition-all">
+                Daftar PKPA Sekarang
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-navy-900 border-t border-white/10 pt-16 pb-8 text-sm">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-gold-500 text-navy-900 flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <span class="font-heading font-bold text-lg">PKPA HK UII</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed max-w-sm mb-4">
+                        Penyelenggara Pendidikan Khusus Profesi Advokat terpercaya, mencetak generasi penegak hukum yang berintegritas dan profesional.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-8 h-8 rounded-full glass-panel flex items-center justify-center hover:bg-gold-500 hover:text-navy-900 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full glass-panel flex items-center justify-center hover:bg-gold-500 hover:text-navy-900 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 font-heading">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#tentang" class="hover:text-gold-500 transition-colors">Tentang Program</a></li>
+                        <li><a href="#kurikulum" class="hover:text-gold-500 transition-colors">Kurikulum</a></li>
+                        <li><a href="#faq" class="hover:text-gold-500 transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 font-heading">Hubungi Kami</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-gold-500"></i>
+                            <span>Fakultas Ilmu Agama Islam UII, Jl. Kaliurang KM 14.5, Sleman, Yogyakarta</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-gold-500"></i>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-gold-500"></i>
+                            <span>pkpa.hk@uii.ac.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 text-center text-gray-500 text-xs">
+                &copy; 2024 Portal Pendaftaran PKPA Hukum Keluarga UII. All rights reserved.<br>
+                Bekerjasama dengan DPN PERADI.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl shadow-[0_4px_20px_rgba(34,197,94,0.5)] hover:scale-110 transition-transform z-50 animate-bounce">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Sticky Navbar & Blur effect on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('glass-nav', 'py-2');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.remove('glass-nav', 'py-2');
+                    navbar.classList.add('py-4');
+                }
+            });
+
+            // 2. Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            mobileBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            // 3. Scroll Reveal Animation via IntersectionObserver
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Hanya animasi sekali saat muncul
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+
+            // 4. Countdown Timer Logic
+            // Set date to 30 days from now for demo purposes
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 30);
+            const targetTime = countDownDate.getTime();
+
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetTime - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerHTML = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerHTML = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds;
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("days").innerHTML = "00";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
+                }
+            }, 1000);
+
+            // 5. Testimonial Slider (Vanilla JS)
+            const track = document.getElementById('testimonial-track');
+            const prevBtn = document.getElementById('prev-testi');
+            const nextBtn = document.getElementById('next-testi');
+            let currentIndex = 0;
+            const slidesCount = track.children.length;
+
+            function updateSliderPosition() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < slidesCount - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // Loop back
+                }
+                updateSliderPosition();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = slidesCount - 1; // Loop end
+                }
+                updateSliderPosition();
+            });
+
+            // 6. FAQ Accordion Logic
+            const faqBtns = document.querySelectorAll('.faq-btn');
+            
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Close other open answers
+                    faqBtns.forEach(otherBtn => {
+                        if (otherBtn !== btn) {
+                            otherBtn.classList.remove('active');
+                            const otherIcon = otherBtn.querySelector('i');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                            otherBtn.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+
+                    // Toggle current answer
+                    this.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    const answer = this.nextElementSibling;
+
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
