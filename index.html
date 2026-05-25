@@ -826,9 +826,9 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <button href="bit.ly/pkpahkuii" class="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-navy-900 font-bold text-lg hover:shadow-gold-glow transform hover:-translate-y-1 transition-all">
-                        Amankan Kelas Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
+                    <a href="https://bit.ly/pkpahkuii" target="_blank" class="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-navy-900 font-bold text-lg hover:shadow-gold-glow transform hover:-translate-y-1 transition-all inline-flex justify-center items-center">
+                       Amankan Kelas Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
                     <a href="https://drive.google.com/drive/folders/1I7ZAJMWALukA8TLZoNtZY1NIUzOTNXGD?usp=sharing" class="w-full md:w-auto px-8 py-4 rounded-xl glass-panel-light font-medium text-white hover:bg-white/10 transition-colors">
                         Unduh Poster
                     </a>
@@ -838,6 +838,43 @@
                 <p class="mt-6 text-sm text-gray-400"><i class="fa-solid fa-wallet text-gold-500 mr-1"></i> Biaya PKPA: Rp5.000.000, Biaya Pendaftaran: Rp350.000</p>
             </div>
         </div>
+        <script>
+    // Mengatur waktu akhir perhitungan mundur (7 Juli 2026, 23:59:00 WIB)
+    // Penambahan GMT+0700 memastikan zona waktu sesuai dengan Waktu Indonesia Barat
+    const countDownDate = new Date("July 7, 2026 23:59:00 GMT+0700").getTime();
+
+    // Memperbarui hitungan mundur setiap 1 detik (1000 milidetik)
+    const countdownFunction = setInterval(function() {
+
+        // Dapatkan tanggal dan waktu hari ini
+        const now = new Date().getTime();
+
+        // Cari selisih antara waktu sekarang dan waktu akhir
+        const distance = countDownDate - now;
+
+        // Perhitungan waktu untuk hari, jam, menit, dan detik
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Menampilkan hasil pada elemen dengan id yang sesuai
+        // Menggunakan padStart untuk menambahkan angka '0' jika hasilnya 1 digit (misal: 09, bukan 9)
+        document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+        document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+        // Jika hitungan mundur selesai, hentikan timer dan pastikan angka menunjukkan 00
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("days").innerHTML = "00";
+            document.getElementById("hours").innerHTML = "00";
+            document.getElementById("minutes").innerHTML = "00";
+            document.getElementById("seconds").innerHTML = "00";
+        }
+    }, 1000);
+         </script>
     </section>
 
     <!-- H. TESTIMONIALS -->
