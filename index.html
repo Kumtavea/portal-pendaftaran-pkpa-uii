@@ -839,33 +839,26 @@
             </div>
         </div>
         <script>
-    // Mengatur waktu akhir perhitungan mundur (7 Juli 2026, 23:59:00 WIB)
-    // Penambahan GMT+0700 memastikan zona waktu sesuai dengan Waktu Indonesia Barat
-    const countDownDate = new Date("July 7, 2026 23:59:00 GMT+0700").getTime();
+    // Menggunakan format ISO 8601 agar terbaca di semua browser (termasuk Safari/iOS)
+    // Format: YYYY-MM-DDTHH:mm:ss+07:00 (untuk WIB)
+    const countDownDate = new Date("2026-07-07T23:59:00+07:00").getTime();
 
-    // Memperbarui hitungan mundur setiap 1 detik (1000 milidetik)
     const countdownFunction = setInterval(function() {
-
-        // Dapatkan tanggal dan waktu hari ini
         const now = new Date().getTime();
-
-        // Cari selisih antara waktu sekarang dan waktu akhir
         const distance = countDownDate - now;
 
-        // Perhitungan waktu untuk hari, jam, menit, dan detik
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Menampilkan hasil pada elemen dengan id yang sesuai
-        // Menggunakan padStart untuk menambahkan angka '0' jika hasilnya 1 digit (misal: 09, bukan 9)
+        // Update ke DOM
         document.getElementById("days").innerHTML = String(days).padStart(2, '0');
         document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
         document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
         document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
 
-        // Jika hitungan mundur selesai, hentikan timer dan pastikan angka menunjukkan 00
+        // Hentikan timer jika waktu sudah habis
         if (distance < 0) {
             clearInterval(countdownFunction);
             document.getElementById("days").innerHTML = "00";
@@ -874,7 +867,7 @@
             document.getElementById("seconds").innerHTML = "00";
         }
     }, 1000);
-         </script>
+</script>
     </section>
 
     <!-- H. TESTIMONIALS -->
