@@ -155,6 +155,11 @@
             z-index: 10;
         }
 
+		/* Gallery Styles */
+		#gallery-container::-webkit-scrollbar {
+        display: none;
+    	}
+
         /* Hide elements for JS functionality */
         .faq-answer {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
@@ -1393,25 +1398,6 @@
     </div>
 </section>
 
-<script>
-    function slideGallery(direction) {
-        const container = document.getElementById('gallery-container');
-        // Angka 400 adalah jarak scroll per klik (sesuaikan dengan lebar kartu)
-        const scrollAmount = direction === 'left' ? -400 : 400; 
-        
-        container.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-    }
-</script>
-
-<style>
-    #gallery-container::-webkit-scrollbar {
-        display: none;
-    }
-</style>
-
     <!-- J. FAQ SECTION -->
     <section id="faq" class="py-24 bg-navy-800/30">
         <div class="container mx-auto px-6 max-w-3xl">
@@ -1597,28 +1583,39 @@
             });
 
             // 2. Mobile Menu Toggle
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            let isMenuOpen = false;
-
-            function toggleMenu() {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    mobileMenu.classList.remove('translate-x-full');
-                    mobileBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                } else {
-                    mobileMenu.classList.add('translate-x-full');
-                    mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            mobileBtn.addEventListener('click', toggleMenu);
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
+			// Memastikan HTML dimuat sepenuhnya sebelum script berjalan
+			document.addEventListener('DOMContentLoaded', () => {
+			    const mobileBtn = document.getElementById('mobile-menu-btn');
+			    const mobileMenu = document.getElementById('mobile-menu');
+			    const mobileLinks = document.querySelectorAll('.mobile-link');
+			    let isMenuOpen = false;
+			    // Pastikan elemen ada sebelum menambahkan event (mencegah error null)
+			    if (!mobileBtn || !mobileMenu) return; 
+			
+			    function toggleMenu() {
+			        isMenuOpen = !isMenuOpen;
+			        if (isMenuOpen) {
+			            mobileMenu.classList.remove('translate-x-full');
+			            mobileBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+			            document.body.style.overflow = 'hidden'; // Kunci scroll
+			        } else {
+			            mobileMenu.classList.add('translate-x-full');
+			            mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+			            document.body.style.overflow = ''; // Gunakan string kosong, bukan 'auto'
+			        }
+			    }
+			    mobileBtn.addEventListener('click', toggleMenu);
+			    
+			    mobileLinks.forEach(link => {
+			        link.addEventListener('click', toggleMenu);
+			    });
+			    // Mencegah bug tidak bisa scroll jika layar di-resize ke ukuran desktop saat menu terbuka
+			    window.addEventListener('resize', () => {
+			        if (window.innerWidth >= 768 && isMenuOpen) { // 768px adalah batas 'md' Tailwind
+			            toggleMenu(); 
+			        }
+			    });
+			});
 
             // 3. Scroll Reveal Animation via IntersectionObserver
             const revealElements = document.querySelectorAll('.reveal');
@@ -1701,7 +1698,19 @@
                 updateSliderPosition();
             });
 
-            // 6. FAQ Accordion Logic
+			// 6. Gallery Animation
+			    function slideGallery(direction) {
+			        const container = document.getElementById('gallery-container');
+			        // Angka 400 adalah jarak scroll per klik (sesuaikan dengan lebar kartu)
+			        const scrollAmount = direction === 'left' ? -400 : 400; 
+			        
+			        container.scrollBy({
+			            left: scrollAmount,
+			            behavior: 'smooth'
+			        });
+			    }
+			
+			// 7. FAQ Accordion Logic
             const faqBtns = document.querySelectorAll('.faq-btn');
             
             faqBtns.forEach(btn => {
