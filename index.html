@@ -31,7 +31,7 @@
                             400: '#ffd04d', // Hover accent
                         }
                     },
-                    fontfamily: {
+                    fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
                         heading: ['Poppins', 'sans-serif'],
                     },
@@ -43,7 +43,7 @@
             }
         }
     </script>
-	
+
     <style>
         /* Custom Variables & Base Resets */
         :root {
@@ -163,62 +163,61 @@
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-navy-900">
 
-    <!-- A. NAVBAR -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="flex items-center gap-3 z-50">
-                    <!-- Placeholder Icons for Logos -->
-                    <div class="w-10 h-10 rounded-full bg-gold-500 text-navy-900 flex items-center justify-center font-bold text-xl shadow-gold-glow">
-                        <i class="fa-solid fa-scale-balanced"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-heading font-bold text-xl leading-tight tracking-wide">PKPA HK UII</span>
-                        <span class="text-[10px] text-gray-300 tracking-widest uppercase">Pendidikan Khusus Profesi Advokat</span>
-                    </div>
-                </div>
-				</div>
+    <!-- A. NAVBAR -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 z-50">
+                    <!-- Placeholder Icons for Logos -->
+                    <div class="w-10 h-10 rounded-full bg-gold-500 text-navy-900 flex items-center justify-center font-bold text-xl shadow-gold-glow">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-xl leading-tight tracking-wide">PKPA HK UII</span>
+                        <span class="text-[10px] text-gray-300 tracking-widest uppercase">Pendidikan Khusus Profesi Advokat</span>
+                    </div>
+                </div>
 
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="#tentang" class="text-sm font-medium hover:text-gold-500 transition-colors">Tentang</a>
-                    <a href="#keunggulan" class="text-sm font-medium hover:text-gold-500 transition-colors">Keunggulan</a>
-                    <a href="#kurikulum" class="text-sm font-medium hover:text-gold-500 transition-colors">Kurikulum</a>
-                    <a href="#testimoni" class="text-sm font-medium hover:text-gold-500 transition-colors">Testimoni</a>
-                    <a href="#faq" class="text-sm font-medium hover:text-gold-500 transition-colors">FAQ</a>
-                </nav>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#tentang" class="text-sm font-medium hover:text-gold-500 transition-colors">Tentang</a>
+                    <a href="#keunggulan" class="text-sm font-medium hover:text-gold-500 transition-colors">Keunggulan</a>
+                    <a href="#kurikulum" class="text-sm font-medium hover:text-gold-500 transition-colors">Kurikulum</a>
+                    <a href="#testimoni" class="text-sm font-medium hover:text-gold-500 transition-colors">Testimoni</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-gold-500 transition-colors">FAQ</a>
+                </nav>
 
-                <!-- CTA & Mobile Toggle -->
-                <div class="flex items-center gap-4 z-50">
-                    <a href="#pendaftaran" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-transparent border border-gold-500 text-gold-500 font-medium text-sm hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 shadow-[0_0_15px_rgba(255,185,9,0.2)] hover:shadow-[0_0_20px_rgba(255,185,9,0.6)]">
-                        Daftar Sekarang
-                    </a>
-                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-4 z-50">
+                    <a href="#pendaftaran" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-transparent border border-gold-500 text-gold-500 font-medium text-sm hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 shadow-[0_0_15px_rgba(255,185,9,0.2)] hover:shadow-[0_0_20px_rgba(255,185,9,0.6)]">
+                        Daftar Sekarang
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-navy-900/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
-            <a href="#tentang" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Tentang PKPA</a>
-            <a href="#kurikulum" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Kurikulum</a>
-            <a href="#keunggulan" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Keunggulan</a>
-            <a href="#testimoni" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Testimoni</a>
-            <a href="#pendaftaran" class="mobile-link px-8 py-3 rounded-full bg-gold-500 text-navy-900 font-bold mt-4">Daftar Sekarang</a>
-        </div>
-    </header>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-navy-900/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
+            <a href="#tentang" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Tentang PKPA</a>
+            <a href="#kurikulum" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Kurikulum</a>
+            <a href="#keunggulan" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Keunggulan</a>
+            <a href="#testimoni" class="mobile-link text-2xl font-heading font-medium hover:text-gold-500">Testimoni</a>
+            <a href="#pendaftaran" class="mobile-link px-8 py-3 rounded-full bg-gold-500 text-navy-900 font-bold mt-4">Daftar Sekarang</a>
+        </div>
+    </header>
 
-    <!-- B. PREMIUM HERO SECTION -->
-    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
-        <!-- Background decorative elements -->
-        <div class="absolute top-20 right-0 w-96 h-96 bg-primary-color rounded-full mix-blend-multiply filter blur-[128px] opacity-50"></div>
-        <div class="absolute bottom-0 left-10 w-72 h-72 bg-gold-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+    <!-- B. PREMIUM HERO SECTION -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 right-0 w-96 h-96 bg-primary-color rounded-full mix-blend-multiply filter blur-[128px] opacity-50"></div>
+        <div class="absolute bottom-0 left-10 w-72 h-72 bg-gold-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
 
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 
                 <!-- Kiri: Konten -->
                 <div class="flex flex-col gap-6 max-w-2xl reveal">
@@ -1258,7 +1257,7 @@
                                 </div>
                                 <p class="text-gray-200 text-lg md:text-xl italic mb-6 leading-relaxed">"Saya mengikuti PKPA karena ingin meng-update ilmu yang selama ini sudah saya terima, saya lulusan FH UGM 2004, dan saya kebetulan sudah bekerja di pemerintah. Kalau dari materi yang kemarin disampaikan banyak ilmu yang saya dapat. Saya lebih konsen ke materi Hukum Acara Peradilan Tata Usaha Negara, karena saya bekerja sebagai Legal Officer di pemerintah. Namun demikian tidak ada salahnya ketika saya terus belajar karena urusan yang ada di lingkungan pemerintah dengan materi yang di disampaikan PKPA itu pasti akan selalu bersinggungan."</p>
                                 <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center text-xl font-bold">S</div>
+                                    <div class="w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center text-xl font-bold">A</div>
                                     <div>
                                         <h4 class="font-bold text-white">Siti Rahayuningsih, S.H., M.Hum.</h4>
                                         <p class="text-sm text-gold-500">Alumni PKPA HK UII Angkatan V</p>
