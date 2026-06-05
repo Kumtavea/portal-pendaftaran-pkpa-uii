@@ -1343,34 +1343,74 @@
     </div>
 </section>
 
-    <!-- I. DOKUMENTASI (GALLERY) -->
-    <section class="py-24 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="font-heading text-3xl font-bold mb-10 text-center reveal">Dokumentasi Kegiatan</h2>
-            <!-- CSS Grid for simple masonry-like look -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px] reveal">
-                <!-- Gunakan placeholder warna solid karena URL gambar riil tidak tersedia -->
-                <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group relative">
-                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                    <div class="w-full h-full bg-gray-800 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
-                        <img src="https://i.pinimg.com/736x/70/45/4c/70454cc953d1cb4b2c22d57f6d9f29f0.jpg">
-                    </div>
-                </div>
-                <div class="rounded-2xl overflow-hidden group relative">
-                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                    <div class="w-full h-full bg-gray-700 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
-                        <img src="https://i.pinimg.com/736x/c4/31/bf/c431bf14a05fe94ff215f2a1e486b7d0.jpg">
-                    </div>
-                </div>
-                <div class="rounded-2xl overflow-hidden group relative">
-                    <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                    <div class="w-full h-full bg-gray-700 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform duration-700">
-                        <img src="https://i.pinimg.com/736x/a1/0f/5b/a10f5b7012957dfff7a0f2840e50dd29.jpg">
-                    </div>
-                </div>
+<section class="py-24 relative">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-end mb-10 reveal">
+            <h2 class="font-heading text-3xl font-bold text-center md:text-left">Dokumentasi Kegiatan</h2>
+            
+            <div class="hidden md:flex gap-3">
+                <button onclick="slideGallery('left')" class="p-3 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button onclick="slideGallery('right')" class="p-3 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </section>
+
+        <div id="gallery-container" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: none; -ms-overflow-style: none;">
+            
+            <div class="flex-none w-[280px] md:w-[400px] h-[300px] rounded-2xl overflow-hidden group relative snap-center">
+                <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <img src="https://i.pinimg.com/736x/70/45/4c/70454cc953d1cb4b2c22d57f6d9f29f0.jpg" alt="Dokumentasi 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="flex-none w-[280px] md:w-[400px] h-[300px] rounded-2xl overflow-hidden group relative snap-center">
+                <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <img src="https://i.pinimg.com/736x/c4/31/bf/c431bf14a05fe94ff215f2a1e486b7d0.jpg" alt="Dokumentasi 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="flex-none w-[280px] md:w-[400px] h-[300px] rounded-2xl overflow-hidden group relative snap-center">
+                <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <img src="https://i.pinimg.com/736x/a1/0f/5b/a10f5b7012957dfff7a0f2840e50dd29.jpg" alt="Dokumentasi 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="flex-none w-[280px] md:w-[400px] h-[300px] rounded-2xl overflow-hidden group relative snap-center">
+                <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <img src="https://i.pinimg.com/736x/70/45/4c/70454cc953d1cb4b2c22d57f6d9f29f0.jpg" alt="Dokumentasi 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="flex-none w-[280px] md:w-[400px] h-[300px] rounded-2xl overflow-hidden group relative snap-center">
+                <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <img src="https://i.pinimg.com/736x/c4/31/bf/c431bf14a05fe94ff215f2a1e486b7d0.jpg" alt="Dokumentasi 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            </div>
+    </div>
+</section>
+
+<script>
+    function slideGallery(direction) {
+        const container = document.getElementById('gallery-container');
+        // Angka 400 adalah jarak scroll per klik (sesuaikan dengan lebar kartu)
+        const scrollAmount = direction === 'left' ? -400 : 400; 
+        
+        container.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
+<style>
+    #gallery-container::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 
     <!-- J. FAQ SECTION -->
     <section id="faq" class="py-24 bg-navy-800/30">
