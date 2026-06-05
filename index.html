@@ -1586,53 +1586,50 @@
 			document.addEventListener('DOMContentLoaded', () => {
 			    const mobileBtn = document.getElementById('mobile-menu-btn');
 			    const mobileMenu = document.getElementById('mobile-menu');
-			    const menuIcon = document.getElementById('menu-icon'); // Mengambil elemen ikon
 			    const mobileLinks = document.querySelectorAll('.mobile-link');
 			    
 			    let isMenuOpen = false;
 			
 			    // Pastikan elemen ada sebelum menambahkan event (mencegah error null)
-			    if (!mobileBtn || !mobileMenu || !menuIcon) return; 
-			
-			    function toggleMenu() {
-			        isMenuOpen = !isMenuOpen;
-			        if (isMenuOpen) {
-			            // Tampilkan menu
-			            mobileMenu.classList.remove('translate-x-full');
-			            // Ganti ikon ke 'X'
-			            menuIcon.classList.remove('fa-bars');
-			            menuIcon.classList.add('fa-xmark');
-			            // Kunci scroll
-			            document.body.style.overflow = 'hidden'; 
-			        } else {
-			            // Sembunyikan menu
-			            mobileMenu.classList.add('translate-x-full');
-			            // Kembalikan ikon ke garis tiga (bars)
-			            menuIcon.classList.remove('fa-xmark');
-			            menuIcon.classList.add('fa-bars');
-			            // Kembalikan scroll normal
-			            document.body.style.overflow = ''; 
-			        }
-			    }
+				if (!mobileBtn) console.error("Tombol mobile-menu-btn TIDAK ditemukan!");
+				    if (!mobileMenu) console.error("Menu overlay mobile-menu TIDAK ditemukan!");
+				    if (!mobileBtn || !mobileMenu) return; 
+				
+				    function toggleMenu() {
+				        isMenuOpen = !isMenuOpen;
+				        
+				        if (isMenuOpen) {
+				            // Membuka menu
+				            mobileMenu.classList.remove('translate-x-full');
+				            // Mengganti ikon langsung ke dalam tombol (Lebih aman untuk FontAwesome)
+				            mobileBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+				            document.body.style.overflow = 'hidden'; 
+				        } else {
+				            // Menutup menu
+				            mobileMenu.classList.add('translate-x-full');
+				            mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+				            document.body.style.overflow = ''; 
+				        }
+				    }
 			
 			    // Event ketika tombol diklik
-			    mobileBtn.addEventListener('click', toggleMenu);
+				mobileBtn.addEventListener('click', toggleMenu);
 			    
 			    // Event ketika link di dalam menu diklik (otomatis tutup)
-			    mobileLinks.forEach(link => {
-			        link.addEventListener('click', () => {
+				mobileLinks.forEach(link => {
+				        link.addEventListener('click', () => {
 			            // Pastikan menu hanya ditutup jika statusnya sedang terbuka
 			            if (isMenuOpen) toggleMenu();
 			        });
 			    });
 			
 			    // Mencegah bug tidak bisa scroll jika layar di-resize ke ukuran desktop saat menu terbuka
-			    window.addEventListener('resize', () => {
-			        if (window.innerWidth >= 768 && isMenuOpen) { // 768px adalah batas 'md' Tailwind
-			            toggleMenu(); 
-			        }
-			    });
-			});
+				window.addEventListener('resize', () => {
+				        if (window.innerWidth >= 768 && isMenuOpen) {
+				            toggleMenu(); 
+				        }
+				    });
+				});
 
             // 3. Scroll Reveal Animation via IntersectionObserver
             const revealElements = document.querySelectorAll('.reveal');
